@@ -45,9 +45,9 @@ impl MedicationLogger {
 
         let values = vec![vec![
             date.into(),
-            time.into(),
+            time.clone().into(),
             medicine.clone().into(),
-            (dose as f64).into(), // 👈 numeric จริง (Sheets ชอบมาก)
+            (dose as f64).into(),
             "auto log".into(),
             note.into(),
         ]];
@@ -65,9 +65,9 @@ impl MedicationLogger {
             .await?;
 
         if note.is_empty() {
-            println!("✓ Logged {} — {} mg", medicine, dose);
+            println!("✓ Logged {} — {} mg at {}", medicine, dose, time);
         } else {
-            println!("✓ Logged {} — {} mg ({})", medicine, dose, note);
+            println!("✓ Logged {} — {} mg ({}) at {}", medicine, dose, note, time);
         }
         Ok(())
     }

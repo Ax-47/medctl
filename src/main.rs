@@ -1,12 +1,12 @@
+use crate::arg::Commands;
+use crate::commands::MedicationLogger;
 use clap::Parser;
 use google_sheets4 as sheets4;
 use sheets4::Sheets;
 use sheets4::{hyper_rustls, hyper_util, yup_oauth2};
-
-use crate::arg::Commands;
-use crate::commands::MedicationLogger;
 mod arg;
 mod commands;
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv::dotenv()?;
